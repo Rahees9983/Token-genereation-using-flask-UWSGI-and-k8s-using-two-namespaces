@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydb
+  namespace: mydbnamespace
+spec:
+  selector:
+    matchLabels:
+      app: mydb
+  template:
+    metadata:
+      labels:
+        app: mydb
+    spec:
+      containers:
+      - name: mydb
+        image: mongo
+        ports:
+        - containerPort: 27017
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  mongoservice
+  namespace: mydbnamespace
+spec:
+  selector:
+    app:  mydb
+  type:  ClusterIP
+  ports:
+  - name:  name-of-the-port
+    port:  27017
+    targetPort:  27017
