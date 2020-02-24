@@ -1,0 +1,12 @@
+requests
+Flask_JWT_Extended
+passlib
+bcrypt
+Werkzeug
+opencv_python
+imutils
+numpy
+Flask_RESTful
+flask
+uwsgi
+pymongo

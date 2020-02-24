@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  namespace: mycurdappnamespace
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: final_jwt
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9095
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  two-namespaceu
+  namespace: mycurdappnamespace
+spec:
+  selector:
+    app:  myapp
+  type:   NodePort
+  ports:
+  - name:  name-of-the-port
+    port:  9095
+    targetPort: 9095
